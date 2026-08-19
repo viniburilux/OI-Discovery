@@ -49,10 +49,14 @@ class DandiAdapter:
         return path.rsplit(".", 1)[-1].lower()
 
     @staticmethod
-    def _asset_record(raw: dict[str, Any]) -> AssetRecord:
+    def _asset_record(raw: dict[str, Any], dataset_id: str, version: str) -> AssetRecord:
         path = str(raw.get("path", ""))
         asset_id = str(raw.get("identifier") or raw.get("id") or path)
         content_url = raw.get("contentUrl") or raw.get("content_url")
+        source_url = raw.get("url") or urljoin(
+            DandiAdapter.api_root,
+            f"dandisets/{dataset_id}/versions/{version}/assets/{asset_id}/",
+        )
         return AssetRecord(
             source="dandi",
             asset_id=asset_id,
@@ -61,7 +65,7 @@ class DandiAdapter:
             format=DandiAdapter._format_from_path(path),
             modality=None,
             license=None,
-            source_url=raw.get("url"),
+            source_url=source_url,
             content_url=content_url,
             checksum=(raw.get("checksum") or {}).get("value") if isinstance(raw.get("checksum"), dict) else raw.get("checksum"),
             modified_at=raw.get("modified"),
@@ -74,7 +78,7 @@ class DandiAdapter:
         dataset_url = urljoin(self.api_root, f"dandisets/{query.dataset_id}/")
         dataset_raw = self._get_json(dataset_url)
         raw_assets = self._all_assets(query.dataset_id, query.version)
-        assets = tuple(self._asset_record(raw) for raw in raw_assets)
+        assets = tuple(self._asset_record(raw, query.dataset_id, query.version) for raw in raw_assets)
         total_size = sum(asset.size_bytes or 0 for asset in assets)
         name = str(dataset_raw.get("name") or dataset_raw.get("identifier") or query.dataset_id)
         description = dataset_raw.get("description") or dataset_raw.get("metadata", {}).get("description")

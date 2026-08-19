@@ -10,7 +10,7 @@ The core does not download biological data, deserialize pickle files, claim scie
 
 ## What is included
 
-The package contains a source-agnostic `DiscoveryAdapter` contract, an initial DANDI adapter, normalized dataset and asset models, deterministic eligibility and ranking, a versioned manifest schema, and a bridge that converts a manifest into a candidate link for LuxMemory. The bridge preserves the query hash, metadata observations, candidate status, limitations, capability IDs and validation gate without writing to a database automatically.
+The package contains a source-agnostic `DiscoveryAdapter` contract, DANDI, OpenAlex and Zenodo adapters, normalized dataset and asset models, deterministic eligibility and ranking, a versioned manifest schema, and a bridge that converts a manifest into a candidate link for LuxMemory. The bridge preserves the query hash, metadata observations, candidate status, limitations, capability IDs and validation gate without writing to a database automatically.
 
 The public repository is the reusable infrastructure layer. The private [OI-Organoids-Intelligence](https://github.com/viniburilux/OI-Organoids-Intelligence) repository remains the research laboratory for papers, experiments, source-specific scripts and biological analysis.
 
@@ -47,6 +47,8 @@ No network is required for the core validation:
 
 ```bash
 PYTHONPATH=src python tests/run_offline_tests.py
+PYTHONPATH=src python tests/run_live_metadata_tests.py
+PYTHONPATH=src python tests/run_cross_domain_live_tests.py
 ```
 
 The suite validates deterministic selection, manifest generation, schema invariants, the OI→LuxMemory bridge, and compatibility with a real metadata-only DANDI manifest. It does not execute the private research scripts and does not load raw scientific files.
@@ -60,6 +62,8 @@ The intended evolution is:
 ```text
 source API → adapter → canonical records → explainable selection → manifest → LuxMemory review link → controlled analysis
 ```
+
+The cross-domain live smoke test currently exercises DANDI for organoids, Zenodo for mangrove-related records, and OpenAlex for technology papers. It does not yet provide patent coverage; a patent-specific adapter remains a separate implementation task.
 
 ## Epistemic boundary
 
