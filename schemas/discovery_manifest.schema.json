@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/viniburilux/OI-Discovery/schema/discovery_manifest.schema.json",
+  "title": "OI Discovery manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "query",
+    "dataset",
+    "decisions",
+    "selected_asset_ids",
+    "download_performed",
+    "warnings",
+    "generated_at",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "download_performed": {"const": false},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "selected_asset_ids": {"type": "array", "items": {"type": "string"}},
+    "query": {
+      "type": "object",
+      "required": ["source", "version", "formats", "modalities", "require_public"],
+      "properties": {
+        "source": {"type": "string"},
+        "dataset_id": {"type": ["string", "null"]},
+        "version": {"type": "string"},
+        "formats": {"type": "array", "items": {"type": "string"}},
+        "modalities": {"type": "array", "items": {"type": "string"}},
+        "min_size_bytes": {"type": ["integer", "null"]},
+        "max_size_bytes": {"type": ["integer", "null"]},
+        "max_assets": {"type": ["integer", "null"]},
+        "require_public": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "dataset": {
+      "type": "object",
+      "required": ["source", "dataset_id", "version", "name", "asset_count", "assets"],
+      "properties": {
+        "source": {"type": "string"},
+        "dataset_id": {"type": "string"},
+        "version": {"type": "string"},
+        "name": {"type": "string"},
+        "status": {"type": ["string", "null"]},
+        "description": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "source_url": {"type": ["string", "null"]},
+        "asset_count": {"type": "integer", "minimum": 0},
+        "total_size_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+        "raw_metadata": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "decisions": {"type": "array", "items": {"$ref": "#/$defs/decision"}},
+    "provenance": {
+      "type": "object",
+      "required": ["generator", "policy", "source"],
+      "properties": {
+        "generator": {"type": "string"},
+        "policy": {"const": "metadata-only"},
+        "source": {"type": "string"},
+        "source_url": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": ["source", "asset_id", "path"],
+      "properties": {
+        "source": {"type": "string"},
+        "asset_id": {"type": "string"},
+        "path": {"type": "string"},
+        "size_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "format": {"type": ["string", "null"]},
+        "modality": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "source_url": {"type": ["string", "null"]},
+        "content_url": {"type": ["string", "null"]},
+        "checksum": {"type": ["string", "null"]},
+        "modified_at": {"type": ["string", "null"]},
+        "raw_metadata": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "required": ["asset_id", "eligible", "score", "reasons", "rejected_reasons"],
+      "properties": {
+        "asset_id": {"type": "string"},
+        "eligible": {"type": "boolean"},
+        "score": {"type": "number"},
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "rejected_reasons": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

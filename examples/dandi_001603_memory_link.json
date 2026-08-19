@@ -1,0 +1,41 @@
+{
+  "link_id": "link_dandi_001603_17052bda1e66",
+  "source_type": "oi_discovery_manifest",
+  "source_path": "experiments/001_outputs/dandi_001603_manifest.json",
+  "source": {
+    "adapter": "dandi",
+    "dataset_id": "001603",
+    "version": "draft",
+    "query_hash": "sha256:17052bda1e660fefbf002055a310fde2073ca2e3edae9782a8df5b1308abfc4c",
+    "source_url": "https://api.dandiarchive.org/api/dandisets/001603/"
+  },
+  "observations": [
+    {
+      "asset_id": "356d4cb3-c817-419b-bf7d-3345931f41be",
+      "claim": "asset matches the deterministic discovery query",
+      "evidence_role": "metadata_observation",
+      "evidence": {
+        "field": "path,format,size_bytes",
+        "quote": "path=sub-HO3/sub-HO3_ses-20250916T190937.nwb; format=nwb; size_bytes=9066104",
+        "source_url": "https://api.dandiarchive.org/api/dandisets/001603/"
+      }
+    }
+  ],
+  "interpretation": {
+    "status": "candidate",
+    "decision": "candidate_for_inspection",
+    "limitations": [
+      "metadata-only",
+      "no scientific suitability established",
+      "human review required before analysis"
+    ]
+  },
+  "luxmemory": {
+    "memory_type": "result",
+    "memory_id": null,
+    "capability_ids": [
+      "CAP-OBS-EVIDENCE_MEMORY_DECISION"
+    ],
+    "gate_id": null
+  }
+}

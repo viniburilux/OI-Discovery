@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/viniburilux/OI-Discovery/schema/discovery_memory_link.schema.json",
+  "title": "OI Discovery to LuxMemory link",
+  "type": "object",
+  "required": ["link_id", "source_type", "source_path", "source", "observations", "interpretation", "luxmemory"],
+  "properties": {
+    "link_id": {"type": "string", "minLength": 1},
+    "source_type": {"const": "oi_discovery_manifest"},
+    "source_path": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "required": ["adapter", "dataset_id", "version", "query_hash", "source_url"],
+      "properties": {
+        "adapter": {"type": "string"},
+        "dataset_id": {"type": "string"},
+        "version": {"type": "string"},
+        "query_hash": {"type": "string", "pattern": "^sha256:"},
+        "source_url": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asset_id", "claim", "evidence_role", "evidence"],
+        "properties": {
+          "asset_id": {"type": "string"},
+          "claim": {"type": "string"},
+          "evidence_role": {"const": "metadata_observation"},
+          "evidence": {
+            "type": "object",
+            "required": ["field", "quote", "source_url"],
+            "properties": {
+              "field": {"type": "string"},
+              "quote": {"type": "string"},
+              "source_url": {"type": ["string", "null"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "required": ["status", "decision", "limitations"],
+      "properties": {
+        "status": {"const": "candidate"},
+        "decision": {"type": "string"},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "luxmemory": {
+      "type": "object",
+      "required": ["memory_type", "memory_id", "capability_ids", "gate_id"],
+      "properties": {
+        "memory_type": {"enum": ["result", "experiment", "hypothesis", "decision", "project_state", "other"]},
+        "memory_id": {"type": ["string", "null"]},
+        "capability_ids": {"type": "array", "items": {"type": "string"}},
+        "gate_id": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
