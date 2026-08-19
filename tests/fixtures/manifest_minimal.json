@@ -1,0 +1,75 @@
+{
+  "schema_version": "oi.discovery.manifest.v0",
+  "query": {
+    "source": "zenodo",
+    "dataset_id": "search:mangrove Brazil",
+    "version": "draft",
+    "formats": ["record"],
+    "modalities": [],
+    "min_size_bytes": null,
+    "max_size_bytes": 1073741824,
+    "max_assets": 3,
+    "require_public": true
+  },
+  "dataset": {
+    "source": "zenodo",
+    "dataset_id": "search:mangrove Brazil",
+    "version": "draft",
+    "name": "Fixture metadata-only search",
+    "status": "live",
+    "description": "Offline fixture preserving only normalized metadata.",
+    "source_url": "https://zenodo.org/search?q=mangrove%20Brazil",
+    "asset_count": 2,
+    "total_size_bytes": 1000,
+    "assets": [
+      {
+        "source": "zenodo",
+        "asset_id": "fixture-001",
+        "path": "record one",
+        "size_bytes": 500,
+        "format": "record",
+        "modality": "dataset",
+        "license": "CC-BY-4.0",
+        "source_url": "https://zenodo.org/records/fixture-001",
+        "content_url": "https://zenodo.org/records/fixture-001",
+        "checksum": null,
+        "modified_at": null,
+        "raw_metadata": {}
+      },
+      {
+        "source": "zenodo",
+        "asset_id": "fixture-002",
+        "path": "record two",
+        "size_bytes": 500,
+        "format": "record",
+        "modality": "dataset",
+        "license": null,
+        "source_url": "https://zenodo.org/records/fixture-002",
+        "content_url": "https://zenodo.org/records/fixture-002",
+        "checksum": null,
+        "modified_at": null,
+        "raw_metadata": {}
+      }
+    ],
+    "raw_metadata": {}
+  },
+  "decisions": [
+    {
+      "asset_id": "fixture-001",
+      "eligible": true,
+      "score": 1.0,
+      "reasons": ["official_reference"],
+      "rejected_reasons": []
+    },
+    {
+      "asset_id": "fixture-002",
+      "eligible": false,
+      "score": 0.0,
+      "reasons": [],
+      "rejected_reasons": ["missing_license"]
+    }
+  ],
+  "selected_asset_ids": ["fixture-001"],
+  "download_performed": false,
+  "warnings": []
+}

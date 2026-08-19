@@ -1,0 +1,581 @@
+{
+  "schema_version": "oi.discovery.benchmark.results.v0",
+  "benchmark": "benchmark/benchmark_v0.json",
+  "created_at": "2026-08-19T07:12:49Z",
+  "policy": {
+    "metadata_only": true,
+    "no_raw_download": true,
+    "human_review_required": true
+  },
+  "executed_question_ids": [
+    "B001",
+    "B002",
+    "B003",
+    "B004",
+    "B005",
+    "B007",
+    "B008",
+    "B009"
+  ],
+  "pending_question_ids": [
+    "B006",
+    "B010"
+  ],
+  "results": [
+    {
+      "question_id": "B001",
+      "case": "dandi_001603",
+      "source": "dandi",
+      "query": "001603",
+      "status": "insufficient_evidence",
+      "records": 111,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "dandi"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "human relevance not normalized by DANDI adapter",
+          "electrophysiology modality not normalized",
+          "NWB equivalence and documentation require manual review"
+        ],
+        "hard_constraints": [
+          "human or human-derived",
+          "electrophysiology modality",
+          "NWB or equivalent metadata"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B001_dandi_001603.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B001",
+      "case": "zenodo_organoid_electrophysiology",
+      "source": "zenodo",
+      "query": "human organoid electrophysiology NWB",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "zenodo"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "human relevance, modality and NWB support are not hard filters in the common selector"
+        ],
+        "hard_constraints": [
+          "human or human-derived",
+          "electrophysiology modality",
+          "NWB or equivalent metadata"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B001_zenodo_organoid_electrophysiology.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B001",
+      "case": "openalex_organoid_electrophysiology",
+      "source": "openalex",
+      "query": "human organoid electrophysiology",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "openalex"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "paper metadata is not a dataset-content proof",
+          "NWB support is unresolved"
+        ],
+        "hard_constraints": [
+          "public dataset evidence",
+          "NWB or equivalent metadata"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B001_openalex_organoid_electrophysiology.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B002",
+      "case": "openalex_lithium_low_temperature",
+      "source": "openalex",
+      "query": "lithium recovery low temperature",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "openalex"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "temperature condition may require abstract/full-text inspection",
+          "Crossref adapter unavailable"
+        ],
+        "hard_constraints": [
+          "lithium recovery",
+          "low-temperature process condition"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B002_openalex_lithium_low_temperature.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B003",
+      "case": "zenodo_mangrove_brazil",
+      "source": "zenodo",
+      "query": "mangrove Brazil",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "zenodo"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "geographic relevance and deduplication require review"
+        ],
+        "hard_constraints": [
+          "mangrove and Brazil relevance",
+          "license or access field present"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B003_zenodo_mangrove_brazil.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B003",
+      "case": "openalex_mangrove_brazil",
+      "source": "openalex",
+      "query": "mangrove Brazil",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "openalex"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "paper metadata is not a dataset-access proof",
+          "license/access completeness is unresolved"
+        ],
+        "hard_constraints": [
+          "mangrove and Brazil relevance",
+          "license or access field present"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B003_openalex_mangrove_brazil.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B004",
+      "case": "openalex_mineral_metal_recovery",
+      "source": "openalex",
+      "query": "mineral retrieval metal recovery",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "openalex"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "target mineral and method cues require title/abstract/manual comparison",
+          "Crossref adapter unavailable"
+        ],
+        "hard_constraints": [
+          "target material identified",
+          "retrieval or recovery process signal"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B004_openalex_mineral_metal_recovery.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B004",
+      "source": "patentsview",
+      "query": "metal recovery",
+      "status": "dependency_blocked",
+      "reason": "PATENTSVIEW_API_KEY is unavailable; patent evidence was not queried.",
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "dependency_blocked",
+        "basis": "required_external_dependency_unavailable",
+        "sources_consulted": [],
+        "candidate_count": 0,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "PATENTSVIEW_API_KEY is unavailable; patent evidence was not queried."
+        ],
+        "hard_constraints": [],
+        "warnings": [
+          "PATENTSVIEW_API_KEY is unavailable; patent evidence was not queried."
+        ],
+        "next_action": "provide_patentsview_api_key_for_patent_source_comparison"
+      },
+      "download_performed": false
+    },
+    {
+      "question_id": "B005",
+      "source": "patentsview",
+      "query": "methanol detection",
+      "status": "dependency_blocked",
+      "reason": "PATENTSVIEW_API_KEY is unavailable; patent-family evidence was not queried.",
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "dependency_blocked",
+        "basis": "required_external_dependency_unavailable",
+        "sources_consulted": [],
+        "candidate_count": 0,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "PATENTSVIEW_API_KEY is unavailable; patent-family evidence was not queried."
+        ],
+        "hard_constraints": [],
+        "warnings": [
+          "PATENTSVIEW_API_KEY is unavailable; patent-family evidence was not queried."
+        ],
+        "next_action": "provide_patentsview_api_key_for_patent_family_smoke_test"
+      },
+      "download_performed": false
+    },
+    {
+      "question_id": "B007",
+      "case": "zenodo_environmental_comparison",
+      "source": "zenodo",
+      "query": "mangrove environmental monitoring",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "zenodo"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "cross-source duplicate detection module is not implemented"
+        ],
+        "hard_constraints": [
+          "stable identifiers and title/author/year comparability"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B007_zenodo_environmental_comparison.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B007",
+      "source": "openalex",
+      "query": "mangrove environmental monitoring",
+      "status": "dependency_blocked",
+      "reason": "openalex_execution_failed: HTTPError: 429 Client Error: Too Many Requests for url: https://api.openalex.org/works?search=mangrove+environmental+monitoring&per-page=25",
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "dependency_blocked",
+        "basis": "required_external_dependency_unavailable",
+        "sources_consulted": [],
+        "candidate_count": 0,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "openalex_execution_failed: HTTPError: 429 Client Error: Too Many Requests for url: https://api.openalex.org/works?search=mangrove+environmental+monitoring&per-page=25"
+        ],
+        "hard_constraints": [],
+        "warnings": [
+          "openalex_execution_failed: HTTPError: 429 Client Error: Too Many Requests for url: https://api.openalex.org/works?search=mangrove+environmental+monitoring&per-page=25"
+        ],
+        "next_action": "retry_openalex_benchmark_case_after_dependency_recovery"
+      },
+      "download_performed": false
+    },
+    {
+      "question_id": "B008",
+      "case": "dandi_readiness_001603",
+      "source": "dandi",
+      "query": "001603",
+      "status": "insufficient_evidence",
+      "records": 111,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "dandi"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "accessibility, license and documentation readiness are not fully normalized"
+        ],
+        "hard_constraints": [
+          "accessible metadata",
+          "license/access evidence",
+          "documentation signal"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B008_dandi_readiness_001603.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B008",
+      "case": "zenodo_readiness_organoid",
+      "source": "zenodo",
+      "query": "organoid electrophysiology",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 3,
+      "rejected": 0,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "zenodo"
+        ],
+        "candidate_count": 3,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "documentation signal and scientific readiness require manual review"
+        ],
+        "hard_constraints": [
+          "accessible metadata",
+          "license/access evidence",
+          "documentation signal"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B008_zenodo_readiness_organoid.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B008",
+      "source": "patentsview",
+      "query": "organoid technology",
+      "status": "dependency_blocked",
+      "reason": "PATENTSVIEW_API_KEY is unavailable; patent readiness evidence was not queried.",
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "dependency_blocked",
+        "basis": "required_external_dependency_unavailable",
+        "sources_consulted": [],
+        "candidate_count": 0,
+        "rejected_count": 0,
+        "rejection_reasons": {},
+        "unresolved_constraints": [
+          "PATENTSVIEW_API_KEY is unavailable; patent readiness evidence was not queried."
+        ],
+        "hard_constraints": [],
+        "warnings": [
+          "PATENTSVIEW_API_KEY is unavailable; patent readiness evidence was not queried."
+        ],
+        "next_action": "provide_patentsview_api_key_for_readiness_comparison"
+      },
+      "download_performed": false
+    },
+    {
+      "question_id": "B009",
+      "case": "dandi_nwb_under_1mb",
+      "source": "dandi",
+      "query": "001603",
+      "status": "insufficient_evidence",
+      "records": 111,
+      "selected": 0,
+      "rejected": 111,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "dandi"
+        ],
+        "candidate_count": 0,
+        "rejected_count": 111,
+        "rejection_reasons": {
+          "above_max_size": 111
+        },
+        "unresolved_constraints": [
+          "human system and documentation sufficiency are unresolved"
+        ],
+        "hard_constraints": [
+          "NWB format",
+          "electrophysiology modality",
+          "human system",
+          "size <= 1 MB",
+          "documentation sufficient"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis",
+          "no_asset_satisfied_query"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B009_dandi_nwb_under_1mb.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B009",
+      "case": "zenodo_nwb_under_1mb",
+      "source": "zenodo",
+      "query": "human electrophysiology NWB",
+      "status": "insufficient_evidence",
+      "records": 25,
+      "selected": 0,
+      "rejected": 25,
+      "evaluation": {
+        "assessment_schema_version": "oi.discovery.assessment.v0",
+        "conclusion": "insufficient_evidence",
+        "basis": "unresolved_constraints",
+        "sources_consulted": [
+          "zenodo"
+        ],
+        "candidate_count": 0,
+        "rejected_count": 25,
+        "rejection_reasons": {
+          "above_max_size": 17,
+          "format_not_requested:record": 25
+        },
+        "unresolved_constraints": [
+          "Zenodo search result format/access semantics require manual review"
+        ],
+        "hard_constraints": [
+          "NWB format",
+          "electrophysiology modality",
+          "human system",
+          "size <= 1 MB",
+          "documentation sufficient"
+        ],
+        "warnings": [
+          "metadata_only: no scientific asset was downloaded",
+          "eligibility_is_heuristic: inspect source metadata before analysis",
+          "no_asset_satisfied_query"
+        ],
+        "next_action": "review_source_metadata_and_constraints"
+      },
+      "manifest": "benchmark/runs_v0/B009_zenodo_nwb_under_1mb.json",
+      "download_performed": false
+    },
+    {
+      "question_id": "B006",
+      "status": "pending_adapter",
+      "reason": "GitHub/Crossref paper-to-code linkage adapter is not implemented in the public core.",
+      "next_action": "implement paper-to-code provenance adapter before running B006"
+    },
+    {
+      "question_id": "B010",
+      "status": "pending_cross_source_module",
+      "reason": "Cross-source evidence map and conflict/readiness module are not implemented as a single benchmark runner.",
+      "next_action": "implement cross-source merge and conflict gate before running B010"
+    }
+  ],
+  "registry": "benchmark/registry_v0.jsonl"
+}

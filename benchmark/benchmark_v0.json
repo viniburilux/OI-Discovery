@@ -1,0 +1,134 @@
+{
+  "schema_version": "oi.discovery.benchmark.v0",
+  "title": "OI Discovery Benchmark v0",
+  "purpose": "Testar se a máquina ajuda uma pessoa a decidir o que investigar, não apenas se recupera resultados.",
+  "policy": {
+    "metadata_only": true,
+    "no_raw_download": true,
+    "private_corpus_allowed": false,
+    "human_review_required": true
+  },
+  "evaluation_dimensions": [
+    "coverage",
+    "duplicate_control",
+    "provenance_completeness",
+    "criterion_fidelity",
+    "uncertainty_calibration",
+    "time_to_answer",
+    "human_corrections",
+    "decision_usefulness",
+    "next_action_quality"
+  ],
+  "questions": [
+    {
+      "id": "B001",
+      "domain": "science",
+      "question": "Encontrar datasets públicos de organoides humanos com eletrofisiologia e referência a NWB.",
+      "decision": "Escolher até três candidatos para inspeção controlada posterior.",
+      "expected_sources": ["dandi", "zenodo", "openalex"],
+      "inclusion": ["organoid or organoid-like biological system", "human or human-derived", "electrophysiology modality", "NWB or equivalent electrophysiology metadata", "official source reference"],
+      "exclusion": ["no human relevance", "no electrophysiology signal", "no official reference", "raw download required for initial decision"],
+      "minimum_answer": "Candidates, rejected items, reasons, provenance, license/access warnings and the next inspection step.",
+      "gold_label_status": "pending_domain_review"
+    },
+    {
+      "id": "B002",
+      "domain": "technology",
+      "question": "Encontrar literatura pública sobre recuperação de lítio que mencione uma restrição de baixa temperatura.",
+      "decision": "Selecionar papers que merecem comparação técnica, sem tratar a menção como prova de desempenho.",
+      "expected_sources": ["openalex", "crossref"],
+      "inclusion": ["lithium recovery", "temperature condition or process condition", "public bibliographic provenance", "title/abstract or indexed concept support"],
+      "exclusion": ["generic lithium battery papers without recovery", "no traceable bibliographic record", "claim inferred only from title similarity"],
+      "minimum_answer": "Comparable paper candidates, evidence fields available, missing full text and a recommendation for manual review.",
+      "gold_label_status": "pending_domain_review"
+    },
+    {
+      "id": "B003",
+      "domain": "environment",
+      "question": "Encontrar datasets públicos relacionados a manguezais no Brasil com licença ou access status identificável.",
+      "decision": "Escolher fontes candidatas para uma análise territorial exploratória.",
+      "expected_sources": ["zenodo", "openalex"],
+      "inclusion": ["mangrove and Brazil relevance", "public metadata record", "license or access field present", "geographic relevance stated or inferable from metadata"],
+      "exclusion": ["no Brazil relation", "no source reference", "license unknown when licensing is a hard requirement"],
+      "minimum_answer": "Selected records, licensing/access caveats, duplicates and the smallest next validation step.",
+      "gold_label_status": "pending_domain_review"
+    },
+    {
+      "id": "B004",
+      "domain": "materials",
+      "question": "Encontrar fontes públicas sobre mineral retrieval ou recuperação de metais que possam sustentar uma triagem de rotas técnicas.",
+      "decision": "Decidir quais fontes justificam uma revisão técnica aprofundada.",
+      "expected_sources": ["openalex", "crossref", "patent"],
+      "inclusion": ["target metal or mineral identified", "retrieval/recovery process signal", "traceable source", "method or process cue"],
+      "exclusion": ["marketing-only language", "unidentified target material", "no method cue", "untraceable result"],
+      "minimum_answer": "Route candidates, source types, missing conditions and a proposed discriminating comparison.",
+      "gold_label_status": "pending_domain_review"
+    },
+    {
+      "id": "B005",
+      "domain": "patents",
+      "question": "Encontrar famílias de patentes públicas relacionadas a detecção de metanol e separar documentos por prioridade e jurisdição.",
+      "decision": "Escolher famílias para leitura de claims e estado legal, sem confundir publicação com validade.",
+      "expected_sources": ["patent"],
+      "inclusion": ["methanol detection relevance", "family or publication identifier", "priority field when available", "jurisdiction field when available", "claims or abstract cue"],
+      "exclusion": ["paper-only record", "duplicate family member counted as independent invention", "legal status inferred without source field"],
+      "minimum_answer": "Patent families, representative publications, priority/jurisdiction metadata, evidence limits and manual legal review gate.",
+      "gold_label_status": "pending_patent_adapter"
+    },
+    {
+      "id": "B006",
+      "domain": "reproducibility",
+      "question": "Encontrar código público associado a papers sobre tecnologia de recuperação de materiais e identificar se há instruções de reprodução.",
+      "decision": "Priorizar fontes que podem apoiar uma reprodução controlada.",
+      "expected_sources": ["github", "openalex", "crossref"],
+      "inclusion": ["paper-to-code relation or explicit repository link", "public repository", "license or usage information", "reproduction instructions signal"],
+      "exclusion": ["repository unrelated to paper", "no public access", "license and usage unknown for required use", "repository exists only as a name in prose"],
+      "minimum_answer": "Candidate code repositories, linkage evidence, reproducibility warnings and the minimum checkout/review step.",
+      "gold_label_status": "pending_adapter"
+    },
+    {
+      "id": "B007",
+      "domain": "comparison",
+      "question": "Comparar resultados encontrados em Zenodo e OpenAlex para uma busca ambiental e identificar duplicatas ou registros que parecem tratar do mesmo trabalho.",
+      "decision": "Evitar contar o mesmo evidence object várias vezes.",
+      "expected_sources": ["zenodo", "openalex", "crossref"],
+      "inclusion": ["stable identifiers", "title/author/year similarity fields", "source provenance preserved"],
+      "exclusion": ["merge based only on vague semantic similarity", "discarding original identifiers", "claiming identity without evidence"],
+      "minimum_answer": "Duplicate candidates, match reasons, unresolved pairs and a conservative merge decision.",
+      "gold_label_status": "pending_deduplication_module"
+    },
+    {
+      "id": "B008",
+      "domain": "readiness",
+      "question": "Dado um conjunto de candidatos sobre uma tecnologia, quais são realmente acessíveis, licenciados e documentados o suficiente para a próxima etapa?",
+      "decision": "Classificar research readiness sem afirmar adequação científica.",
+      "expected_sources": ["dandi", "zenodo", "openalex", "patent"],
+      "inclusion": ["accessible metadata", "license/access evidence", "documentation signal", "source reference"],
+      "exclusion": ["readiness inferred from popularity", "license assumed from public URL", "documentation assumed from title"],
+      "minimum_answer": "Readiness matrix, blockers, evidence insufficiency status and next gate.",
+      "gold_label_status": "pending_readiness_gate"
+    },
+    {
+      "id": "B009",
+      "domain": "absence",
+      "question": "Encontrar um dataset público com formato NWB, modalidade eletrofisiológica, sistema humano, tamanho máximo de 1 MB e documentação suficiente.",
+      "decision": "Verificar se existe evidência suficiente; aceitar 'evidência insuficiente' como resposta correta.",
+      "expected_sources": ["dandi", "zenodo"],
+      "inclusion": ["all hard constraints satisfied", "official reference", "documentation evidence"],
+      "exclusion": ["relaxing size limit silently", "choosing a non-human system", "treating unknown documentation as sufficient"],
+      "minimum_answer": "Either qualifying candidates or an explicit insufficient-evidence report listing sources consulted, rejected counts and reasons.",
+      "gold_label_status": "negative_control"
+    },
+    {
+      "id": "B010",
+      "domain": "cross_domain",
+      "question": "A partir de uma pergunta técnica sobre produção sustentável, encontrar evidências em papers, datasets e patentes e indicar se a combinação é suficiente para iniciar uma investigação.",
+      "decision": "Escolher entre explorar, validar, construir ou parar por falta de evidência.",
+      "expected_sources": ["openalex", "zenodo", "patent"],
+      "inclusion": ["same target/problem represented across source types", "provenance preserved", "conflicts exposed", "readiness gate explicit"],
+      "exclusion": ["combining unrelated records", "treating source count as evidence quality", "hiding conflicts or gaps"],
+      "minimum_answer": "Cross-source evidence map, conflicts, capability/decision gate and next experiment.",
+      "gold_label_status": "pending_cross_source_module"
+    }
+  ]
+}

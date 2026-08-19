@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/viniburilux/OI-Discovery/schemas/query_dsl.schema.json",
+  "title": "OI Discovery Query DSL",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "oi.discovery.query.v0"},
+    "sources": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "dataset_id": {"type": "string", "description": "Stable dataset identifier or text query consumed by a source adapter."},
+    "domain": {"type": "string"},
+    "keywords": {"type": "array", "items": {"type": "string"}},
+    "modalities": {"type": "array", "items": {"type": "string"}},
+    "formats": {"type": "array", "items": {"type": "string"}},
+    "geography": {"type": "string"},
+    "date_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from": {"type": "string"},
+        "to": {"type": "string"}
+      }
+    },
+    "license": {"type": "array", "items": {"type": "string"}},
+    "accessibility": {"type": "string", "enum": ["public", "metadata_only", "downloadable", "unknown"]},
+    "max_size_gb": {"type": "number", "exclusiveMinimum": 0},
+    "min_size_gb": {"type": "number", "minimum": 0},
+    "provenance_required": {"type": "boolean"},
+    "max_assets": {"type": "integer", "minimum": 1}
+  },
+  "required": ["schema_version", "sources"]
+}

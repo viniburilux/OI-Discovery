@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from oi_discovery.adapters.patentsview import PatentAdapter
 from oi_discovery.bridge import build_link
 from oi_discovery.manifest import build_result, write_manifest
 from oi_discovery.models import AssetRecord, DatasetRecord, DiscoveryQuery
@@ -26,6 +27,47 @@ def fixture_dataset() -> DatasetRecord:
             AssetRecord(source="fixture", asset_id="c-nwb", path="large.nwb", size_bytes=500, format="nwb", source_url="https://example.org/c"),
         ),
     )
+
+
+def test_patent_adapter_offline() -> None:
+    query = DiscoveryQuery(
+        source="patentsview",
+        dataset_id="methanol detection",
+        version="v0",
+        max_assets=2,
+    )
+    fixture = {
+        "query_results": {"total_hits": 2},
+        "patents": [
+            {
+                "patent_id": "US1234567A",
+                "patent_title": "Methanol detection using an optical sensor",
+                "patent_date": "2024-02-01",
+                "patent_type": "utility",
+                "patent_num_claims": 12,
+                "inventors": [{"inventor_name_first_name": "Ada", "inventor_name_last_name": "Lovelace"}],
+                "assignees": [{"assignee_organization": "Example Instruments"}],
+                "cpc_current": [{"cpc_section_id": "G"}],
+                "family_id": "FAM-001",
+                "priority_date": "2022-01-10",
+            },
+            {
+                "patent_id": "EP7654321B1",
+                "patent_title": "Sensor for detecting methanol",
+                "patent_date": "2023-10-11",
+                "family_id": "FAM-001",
+            },
+        ],
+    }
+    dataset = PatentAdapter(api_key="offline-fixture").normalize_response(query, fixture, endpoint="https://fixture.test/patent/")
+    assert dataset.source == "patentsview"
+    assert dataset.dataset_id == "search:methanol detection"
+    assert dataset.asset_count == 2
+    assert dataset.raw_metadata["total_hits"] == 2
+    assert dataset.assets[0].asset_id == "patent:US1234567A"
+    assert dataset.assets[0].format == "patent_metadata"
+    assert dataset.assets[0].content_url is None
+    assert dataset.assets[0].raw_metadata["family_id"] == "FAM-001"
 
 
 def test_selection() -> None:
@@ -104,9 +146,10 @@ if __name__ == "__main__":
     import tempfile
 
     with tempfile.TemporaryDirectory() as directory:
+        test_patent_adapter_offline()
         test_selection()
         test_manifest(Path(directory))
         test_bridge()
         test_legacy_manifest()
         test_schema()
-    print("offline_tests_ok: selection, manifest, bridge, legacy manifest, schema")
+    print("offline_tests_ok: patent adapter, selection, manifest, bridge, legacy manifest, schema")

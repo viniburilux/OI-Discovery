@@ -6,6 +6,7 @@ The tests call public metadata endpoints and never download dataset contents.
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -16,6 +17,7 @@ if str(SRC) not in sys.path:
 
 from oi_discovery.adapters.dandi import DandiAdapter
 from oi_discovery.adapters.openalex import OpenAlexAdapter
+from oi_discovery.adapters.patentsview import PatentAdapter
 from oi_discovery.adapters.zenodo import ZenodoAdapter
 from oi_discovery.bridge import build_link
 from oi_discovery.manifest import build_result, write_manifest
@@ -66,6 +68,24 @@ def main() -> int:
         ),
     ]
     results = [run_case(name, adapter, query) for name, adapter, query in cases]
+    patent_query = DiscoveryQuery(
+        source="patentsview",
+        dataset_id="methanol detection",
+        version="v0",
+        formats=("patent_metadata",),
+        max_assets=5,
+    )
+    if not os.getenv("PATENTSVIEW_API_KEY"):
+        results.append({
+            "name": "04_methanol_detection_patentsview",
+            "source": "patentsview",
+            "query": patent_query.dataset_id,
+            "status": "skipped_no_api_key",
+            "reason": "PATENTSVIEW_API_KEY is not available in this environment; no network call was attempted.",
+            "download_performed": False,
+        })
+    else:
+        results.append(run_case("04_methanol_detection_patentsview", PatentAdapter(), patent_query))
     report = OUT / "cross_domain_results.json"
     report.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
     print("cross_domain_live_tests_ok")

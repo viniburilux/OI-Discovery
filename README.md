@@ -10,7 +10,7 @@ The core does not download biological data, deserialize pickle files, claim scie
 
 ## What is included
 
-The package contains a source-agnostic `DiscoveryAdapter` contract, DANDI, OpenAlex and Zenodo adapters, normalized dataset and asset models, deterministic eligibility and ranking, a versioned manifest schema, and a bridge that converts a manifest into a candidate link for LuxMemory. The bridge preserves the query hash, metadata observations, candidate status, limitations, capability IDs and validation gate without writing to a database automatically.
+The package contains a source-agnostic `DiscoveryAdapter` contract, DANDI, OpenAlex, PatentsView and Zenodo adapters, normalized dataset and asset models, deterministic eligibility and ranking, a versioned manifest schema, and a bridge that converts a manifest into a candidate link for LuxMemory. The PatentsView adapter searches patent metadata only and preserves identifiers, titles, dates, classifications, inventors, assignees and family fields when the API returns them. The bridge preserves the query hash, metadata observations, candidate status, limitations, capability IDs and validation gate without writing to a database automatically.
 
 The public repository is the reusable infrastructure layer. The private [OI-Organoids-Intelligence](https://github.com/viniburilux/OI-Organoids-Intelligence) repository remains the research laboratory for papers, experiments, source-specific scripts and biological analysis.
 
@@ -29,7 +29,20 @@ PYTHONPATH=src python scripts/oi_discover.py \
   --output discovery_result.json
 ```
 
-The live command requires network access to the public DANDI API. It produces metadata only and always records `download_performed: false`.
+The live command requires network access to the selected public API. For PatentsView, set `PATENTSVIEW_API_KEY` before running a live query; the adapter refuses live calls without the key. All adapters produce metadata only and the manifest always records `download_performed: false`.
+
+A PatentsView query uses `dataset_id` as the text search while keeping the canonical query contract source-agnostic:
+
+```bash
+export PATENTSVIEW_API_KEY="..."
+PYTHONPATH=src python scripts/oi_discover.py \
+  --source patentsview \
+  --dataset-id "methanol detection" \
+  --max-assets 5 \
+  --output patentsview_result.json
+```
+
+For tests that must not use a network or credential, call `PatentAdapter.normalize_response()` with a saved fixture payload.
 
 To connect an existing manifest to LuxMemory without changing the database:
 
@@ -49,13 +62,14 @@ No network is required for the core validation:
 PYTHONPATH=src python tests/run_offline_tests.py
 PYTHONPATH=src python tests/run_live_metadata_tests.py
 PYTHONPATH=src python tests/run_cross_domain_live_tests.py
+PYTHONPATH=src python tests/run_dsl_registry_tests.py
 ```
 
-The suite validates deterministic selection, manifest generation, schema invariants, the OI→LuxMemory bridge, and compatibility with a real metadata-only DANDI manifest. It does not execute the private research scripts and does not load raw scientific files.
+The suite validates the offline PatentsView normalizer, deterministic selection, manifest generation, schema invariants, the OI→LuxMemory bridge, query DSL and registry behavior, and compatibility with a real metadata-only DANDI manifest. It does not execute the private research scripts and does not load raw scientific files. The cross-domain live test can cover DANDI, Zenodo and OpenAlex without a patent credential; PatentsView live coverage is reported as skipped when `PATENTSVIEW_API_KEY` is unavailable.
 
 ## Extension model
 
-New sources should implement the adapter contract and map their native response into `DatasetRecord` and `AssetRecord`. The source-specific adapter should preserve raw metadata, source identifiers, official URLs, version information and explicit warnings. Selection rules belong to the common layer so that DANDI, OpenAlex, Zenodo, GitHub, Crossref or Europe PMC can be compared without duplicating policy.
+New sources should implement the adapter contract and map their native response into `DatasetRecord` and `AssetRecord`. The source-specific adapter should preserve raw metadata, source identifiers, official URLs, version information and explicit warnings. Selection rules belong to the common layer so that DANDI, OpenAlex, PatentsView, Zenodo, GitHub, Crossref or Europe PMC can be compared without duplicating policy.
 
 The intended evolution is:
 
@@ -63,7 +77,7 @@ The intended evolution is:
 source API → adapter → canonical records → explainable selection → manifest → LuxMemory review link → controlled analysis
 ```
 
-The cross-domain live smoke test currently exercises DANDI for organoids, Zenodo for mangrove-related records, and OpenAlex for technology papers. It does not yet provide patent coverage; a patent-specific adapter remains a separate implementation task.
+The cross-domain live smoke test currently exercises DANDI for organoids, Zenodo for mangrove-related records, and OpenAlex for technology papers. PatentsView is now covered offline with a deterministic fixture; its live smoke test is intentionally conditional on `PATENTSVIEW_API_KEY` and is skipped, with an explicit reason, when no credential is available.
 
 ## Epistemic boundary
 
