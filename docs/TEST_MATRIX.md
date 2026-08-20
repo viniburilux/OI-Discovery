@@ -1,10 +1,10 @@
-# OI Discovery — test matrix v1
+# TraceFoundry — test matrix v1
 
 **Run date:** 2026-08-19. **Policy:** metadata-only; no dataset content was downloaded.
 
 ## Executive result
 
-The same OI Discovery contract successfully ran against three distinct public metadata sources: DANDI for organoid assets, Zenodo for environmental records, and OpenAlex for technology papers. The PatentAdapter also passed offline normalization against a PatentsView fixture. This is evidence that the adapter and manifest architecture generalizes structurally beyond the original organoid use case. It is not evidence of scientific suitability, source completeness, licensing clearance, or commercial value.
+The same TraceFoundry contract successfully ran against three distinct public metadata sources: DANDI for organoid assets, Zenodo for environmental records, and OpenAlex for technology papers. The PatentAdapter also passed offline normalization against a PatentsView fixture. This is evidence that the adapter and manifest architecture generalizes structurally beyond the original organoid use case. It is not evidence of scientific suitability, source completeness, licensing clearance, or commercial value.
 
 ## Matrix
 
@@ -15,11 +15,11 @@ The same OI Discovery contract successfully ran against three distinct public me
 | Fact | The DANDI asset selection can preserve an official asset reference when the listing response does not provide one directly. | Live DANDI test plus source URL probe | One NWB asset selected with official API reference; no download | Observed in this run | Add a test for expired or inaccessible asset URLs. |
 | Fact | The same contract works for a public Zenodo search. | Cross-domain runner, query `mangrove Brazil` | 25 records returned; 3 selected; manifest and LuxMemory link generated | Observed in this run | Add deduplication across Zenodo versions and record files. |
 | Fact | The same contract works for a public OpenAlex works search. | Cross-domain runner, query `lithium recovery technology` | 25 papers returned; 3 selected; manifest and LuxMemory link generated | Observed in this run | Preserve DOI, abstract availability and open-access status as first-class fields. |
-| Inference | OI Discovery is not structurally tied to organoids. | Compare the three live runs under one runner and one selection layer | The common adapter/manifest/bridge path succeeded in all three domains | Strong structural inference | Evaluate precision and user value with domain-expert questions. |
+| Inference | TraceFoundry is not structurally tied to organoids. | Compare the three live runs under one runner and one selection layer | The common adapter/manifest/bridge path succeeded in all three domains | Strong structural inference | Evaluate precision and user value with domain-expert questions. |
 | Fact / boundary | Benchmark v0 can execute metadata-only cases and record unresolved constraints instead of overstating sufficiency. | `PYTHONPATH=src python3 scripts/run_benchmark_v0.py` | 18 benchmark entries recorded; B001–B005 and B007–B009 have manifests or explicit dependency blocks; B006 and B010 remain pending. | Observed and reproducible | Add domain review and gold labels before measuring precision or decision usefulness. |
 | Hypothesis | Researchers benefit from an explainable candidate list more than from a raw API result. | Human review of Benchmark v0 results | Not yet validated | Unvalidated | Ask a researcher to rate source coverage, reasons, time saved and next action. |
 | Hypothesis | A manifest is useful as a handoff between discovery, memory and later analysis. | Re-open generated link in LuxMemory and review provenance fields | Link generated and status remains `candidate`; no automatic DB mutation | Partially tested | Add an explicit LuxMemory import/review screen or CLI queue. |
-| Fact / boundary | OI Discovery has a PatentAdapter contract and fixture-based normalizer. | `test_patent_adapter_offline()` plus `run_cross_domain_live_tests.py` | Offline normalization passed; live case is `skipped_no_api_key` in this environment. | Observed with live dependency blocked | Provide `PATENTSVIEW_API_KEY` and run the small metadata-only smoke test. |
+| Fact / boundary | TraceFoundry has a PatentAdapter contract and fixture-based normalizer. | `test_patent_adapter_offline()` plus `run_cross_domain_live_tests.py` | Offline normalization passed; live case is `skipped_no_api_key` in this environment. | Observed with live dependency blocked | Provide `PATENTSVIEW_API_KEY` and run the small metadata-only smoke test. |
 | Boundary | A selected asset is not proof of scientific relevance or data quality. | Inspect manifest semantics and epistemic status | Selected items are operational candidates; link status is `candidate` | Explicitly preserved | Do not promote selection to evidence without domain review. |
 
 ## Commands
@@ -43,11 +43,11 @@ The test suite does not establish that a DANDI, Zenodo, OpenAlex or PatentsView 
 
 ## References
 
-[1] [DANDI API](https://api.dandiarchive.org/api/) — public dandiset and asset metadata API.  
-[2] [Zenodo Records API](https://developers.zenodo.org/) — public record search and metadata API.  
-[3] [OpenAlex API](https://docs.openalex.org/) — public scholarly works metadata API.  
+[1] [DANDI API](https://api.dandiarchive.org/api/) — public dandiset and asset metadata API.
+[2] [Zenodo Records API](https://developers.zenodo.org/) — public record search and metadata API.
+[3] [OpenAlex API](https://docs.openalex.org/) — public scholarly works metadata API.
 [4] [PatentsView Search API](https://search.patentsview.org/docs/docs/Search%20API/SearchAPIReference/) — public patent metadata search reference; live calls require an API key.
 
-[5] [OI-Discovery repository](https://github.com/viniburilux/OI-Discovery) — public implementation and test runners.
+[5] [OI-Discovery repository](https://github.com/viniburilux/TraceFoundry) — public implementation and test runners.
 
 [6] [LuxMemory repository](https://github.com/viniburilux/LuxMemory) — structured memory and capability layer used by the bridge.

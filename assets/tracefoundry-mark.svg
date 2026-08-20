@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">TraceFoundry mark</title>
+  <desc id="desc">A geometric trace connecting evidence nodes into a foundry-like frame.</desc>
+  <rect width="256" height="256" rx="48" fill="#0b1220"/>
+  <path d="M64 72h62c26 0 46 20 46 46s-20 46-46 46H96" fill="none" stroke="#f4b860" stroke-width="18" stroke-linecap="round"/>
+  <path d="M96 72v104" fill="none" stroke="#e8edf5" stroke-width="18" stroke-linecap="round"/>
+  <path d="M96 124h54" fill="none" stroke="#e8edf5" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="64" cy="72" r="12" fill="#4fd1c5"/>
+  <circle cx="64" cy="176" r="12" fill="#4fd1c5"/>
+  <circle cx="192" cy="118" r="12" fill="#f4b860"/>
+</svg>
