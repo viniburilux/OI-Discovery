@@ -1,0 +1,59 @@
+{
+  "schema_version": "claim-audit-v0",
+  "registry_id": "public-claim-audit-example-v0",
+  "source_policy": "Public primary sources only; no raw scientific data, private memory, credentials, or unverified laboratory claims.",
+  "claims": [
+    {
+      "claim_id": "CA001",
+      "statement": "Kagan et al. report an in-vitro neural culture system connected to a high-density multielectrode array, with electrophysiological stimulation and recording in a simulated Pong task.",
+      "status": "observed",
+      "scope": "The specific system and task described in the cited paper.",
+      "evidence_ids": ["PUBMED-36228614"],
+      "source_uris": ["https://pubmed.ncbi.nlm.nih.gov/36228614/"],
+      "note": "This does not establish consciousness, general intelligence, or transfer beyond the reported protocol.",
+      "next_gate": "Review the full paper and source-data availability before making a reproducibility claim."
+    },
+    {
+      "claim_id": "CA002",
+      "statement": "DishBrain demonstrates general intelligence or consciousness.",
+      "status": "rejected",
+      "scope": "The stronger interpretation is not supported by the cited abstract.",
+      "evidence_ids": ["PUBMED-36228614"],
+      "source_uris": ["https://pubmed.ncbi.nlm.nih.gov/36228614/"],
+      "correction": "Use the narrower wording: the paper reports apparent learning under a specific closed-loop task.",
+      "note": "A title or popular description is not sufficient evidence for a general claim.",
+      "next_gate": "Do not reuse the rejected wording in a public product description."
+    },
+    {
+      "claim_id": "CA003",
+      "statement": "Brainoware uses a brain organoid and a high-density multielectrode interface for adaptive reservoir computing.",
+      "status": "observed",
+      "scope": "The concept and interface described by Cai et al.",
+      "evidence_ids": ["NATURE-ELECTRONICS-2023"],
+      "source_uris": ["https://www.nature.com/articles/s41928-023-01069-w"],
+      "note": "The source supports the specific reported approach; it does not establish a general biological computer or universal memory system.",
+      "next_gate": "Extract the exact task, data availability and reported metrics from the primary article before reproducing results."
+    },
+    {
+      "claim_id": "CA004",
+      "statement": "All Brainoware data and code are openly available.",
+      "status": "contradicted",
+      "scope": "Availability claim about the full supporting material.",
+      "evidence_ids": ["NATURE-ELECTRONICS-2023"],
+      "source_uris": ["https://www.nature.com/articles/s41928-023-01069-w"],
+      "correction": "The source indicates that source data are provided and other supporting data are available from the corresponding author on reasonable request; full open availability should not be claimed.",
+      "note": "Availability, license and reproducibility are separate properties.",
+      "next_gate": "Verify the exact license and publicly downloadable files before recommending reuse."
+    },
+    {
+      "claim_id": "CA005",
+      "statement": "DANDI 001603 is an open record titled 'Preconfigured neuronal firing sequences in human brain organoids' with 111 assets in the consulted draft.",
+      "status": "observed",
+      "scope": "The consulted DANDI API record and its draft metadata.",
+      "evidence_ids": ["DANDI-001603"],
+      "source_uris": ["https://api.dandiarchive.org/api/dandisets/001603/"],
+      "note": "The record was observed as draft metadata and is large; this does not make it a ready-made Colab dataset or prove every asset has the desired modality.",
+      "next_gate": "Check published-version status, license and asset-level metadata before acquisition or scientific interpretation."
+    }
+  ]
+}

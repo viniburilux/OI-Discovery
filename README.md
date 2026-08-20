@@ -132,7 +132,7 @@ PYTHONPATH=src python tests/run_live_metadata_tests.py
 PYTHONPATH=src python tests/run_cross_domain_live_tests.py
 ```
 
-The repository includes a reproducible [test matrix](docs/TEST_MATRIX.md), [cross-domain results](docs/CROSS_DOMAIN_TESTS.md), [Benchmark v0 report](docs/BENCHMARK_V0_RESULTS.md), [architecture notes](docs/ARCHITECTURE.md), [investigation contracts](docs/INVESTIGATION.md) and [commercial positioning](docs/POSITIONING.md). The benchmark is a proof of infrastructure, not a claim that TraceFoundry has already demonstrated productivity gains against manual search or conventional RAG.
+The repository includes a reproducible [test matrix](docs/TEST_MATRIX.md), [cross-domain results](docs/CROSS_DOMAIN_TESTS.md), [Benchmark v0 report](docs/BENCHMARK_V0_RESULTS.md), [architecture notes](docs/ARCHITECTURE.md), [investigation contracts](docs/INVESTIGATION.md), the [Scientific Staging Playbook](docs/SCIENTIFIC_STAGING_PLAYBOOK.md), the [Claim Audit Starter Kit](docs/CLAIM_AUDIT_PLAYBOOK.md), the [Publication Pipeline](docs/PUBLICATION_PIPELINE.md) and [commercial positioning](docs/POSITIONING.md). The benchmark is a proof of infrastructure, not a claim that TraceFoundry has already demonstrated productivity gains against manual search or conventional RAG.
 
 ## The core contract
 
@@ -147,7 +147,9 @@ The Python package and CLI retain the stable `oi_discovery` namespace so existin
 
 ## Public core, private laboratory
 
-TraceFoundry is the reusable public infrastructure layer. Generic investigation contracts, public metadata fixtures and reviewable Research Moves are included here. Domain-specific research scripts, derived scientific data, private decisions and memory remain outside this repository. That boundary is deliberate: the public product demonstrates reproducibility and provenance without exposing a private research laboratory or pretending that metadata is scientific validation.
+TraceFoundry is the reusable public infrastructure layer. Generic investigation contracts, public metadata fixtures, reviewable Research Moves, the [Scientific Staging Playbook](docs/SCIENTIFIC_STAGING_PLAYBOOK.md), the [Claim Audit Starter Kit](docs/CLAIM_AUDIT_PLAYBOOK.md) and the [Publication Pipeline](docs/PUBLICATION_PIPELINE.md) are included here. Domain-specific research scripts, derived scientific data, private decisions and memory remain outside this repository. That boundary is deliberate: the public product demonstrates reproducibility and provenance without exposing a private research laboratory or pretending that metadata is scientific validation.
+
+The public/private bridge is selective by design: **private work is a source of candidates; public work is a curated package of evidence, infrastructure, demonstration or shareable knowledge**. Every promotion must pass provenance, license, security, reproducibility and epistemic-language checks.
 
 ## Roadmap
 
