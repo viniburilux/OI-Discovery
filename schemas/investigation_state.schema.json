@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/viniburilux/TraceFoundry/blob/main/schemas/investigation_state.schema.json",
+  "title": "TraceFoundry Investigation State",
+  "description": "A metadata-only, versioned snapshot of an auditable investigation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "investigation_id", "question", "status", "evidence", "claims", "gaps"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "investigation_id": {"type": "string", "minLength": 1},
+    "question": {"type": "string", "minLength": 1},
+    "status": {"enum": ["open", "in_review", "resolved", "closed"]},
+    "evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidenceReference"}
+    },
+    "claims": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "gaps": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidenceGap"}
+    },
+    "decision": {"type": ["string", "null"]},
+    "next_move_id": {"type": ["string", "null"]},
+    "created_at": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"]},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "kind", "source", "metadata_only"],
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "uri": {"type": ["string", "null"]},
+        "record_id": {"type": ["string", "null"]},
+        "observed_at": {"type": ["string", "null"]},
+        "metadata_only": {"const": true},
+        "provenance_note": {"type": ["string", "null"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "statement", "status", "evidence_ids", "gap_ids"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "status": {"enum": ["observed", "inferred", "hypothesis", "insufficient", "blocked", "rejected", "contradicted"]},
+        "evidence_ids": {"type": "array", "items": {"type": "string"}},
+        "gap_ids": {"type": "array", "items": {"type": "string"}},
+        "note": {"type": ["string", "null"]}
+      }
+    },
+    "evidenceGap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gap_id", "statement", "severity", "required_evidence", "status"],
+      "properties": {
+        "gap_id": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "severity": {"type": "string"},
+        "required_evidence": {"type": "array", "items": {"type": "string"}},
+        "status": {"type": "string"}
+      }
+    }
+  }
+}

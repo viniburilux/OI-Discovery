@@ -1,0 +1,112 @@
+{
+  "schema_version": "tracefoundry.investigation_state.v0",
+  "investigation_id": "V001-human-organoid-electrophysiology",
+  "question": "Quais datasets públicos devo investigar para estudar eletrofisiologia de organoides humanos?",
+  "status": "in_review",
+  "evidence": [
+    {
+      "evidence_id": "ev-dandi-001603",
+      "kind": "dataset_record",
+      "source": "dandi",
+      "uri": "https://api.dandiarchive.org/api/dandisets/001603/",
+      "record_id": "001603",
+      "observed_at": "2026-08-20T01:45:56Z",
+      "metadata_only": true,
+      "provenance_note": "Public API observation; the dataset was not downloaded."
+    },
+    {
+      "evidence_id": "ev-dandi-001603-asset",
+      "kind": "asset_metadata",
+      "source": "dandi",
+      "uri": "https://api.dandiarchive.org/api/dandisets/001603/versions/draft/assets/sub-HO3/sub-HO3_ses-20250916T190930_obj-2sqh9d.nwb/",
+      "record_id": "sub-HO3/sub-HO3_ses-20250916T190930_obj-2sqh9d.nwb",
+      "observed_at": "2026-08-20T01:45:56Z",
+      "metadata_only": true,
+      "provenance_note": "Selected by deterministic metadata policy; suitability requires review."
+    },
+    {
+      "evidence_id": "ev-openalex-cyborg-organoids",
+      "kind": "paper_record",
+      "source": "openalex",
+      "uri": "https://doi.org/10.1021/acs.nanolett.9b02512",
+      "record_id": "https://openalex.org/W2964435824",
+      "observed_at": "2026-08-20T01:46:03Z",
+      "metadata_only": true,
+      "provenance_note": "Paper metadata is contextual evidence, not proof of dataset availability or NWB support."
+    },
+    {
+      "evidence_id": "ev-zenodo-query-shape",
+      "kind": "source_observation",
+      "source": "zenodo",
+      "uri": "https://zenodo.org/search?q=human%20organoid%20electrophysiology%20NWB",
+      "record_id": "search:human organoid electrophysiology NWB",
+      "observed_at": "2026-08-20T01:45:59Z",
+      "metadata_only": true,
+      "provenance_note": "The strict NWB filter returned no eligible records because Zenodo records are represented as records, not NWB assets."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "cl-001",
+      "statement": "DANDI exposes a public dataset record with assets represented as NWB metadata.",
+      "status": "observed",
+      "evidence_ids": ["ev-dandi-001603", "ev-dandi-001603-asset"],
+      "gap_ids": ["gap-001", "gap-002"],
+      "note": "The observation does not establish biological suitability for a particular hypothesis."
+    },
+    {
+      "claim_id": "cl-002",
+      "statement": "OpenAlex provides contextual papers related to organoid electrophysiology.",
+      "status": "observed",
+      "evidence_ids": ["ev-openalex-cyborg-organoids"],
+      "gap_ids": ["gap-003"],
+      "note": "A paper record is not a dataset record."
+    },
+    {
+      "claim_id": "cl-003",
+      "statement": "The current cross-source evidence is sufficient to choose candidates for human review, but not to declare scientific suitability.",
+      "status": "inferred",
+      "evidence_ids": ["ev-dandi-001603", "ev-dandi-001603-asset", "ev-openalex-cyborg-organoids", "ev-zenodo-query-shape"],
+      "gap_ids": ["gap-001", "gap-002", "gap-003", "gap-004"]
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "gap-001",
+      "statement": "The public metadata does not uniformly prove human organoid relevance at the asset level.",
+      "severity": "material",
+      "required_evidence": ["source-level biological-system metadata", "human review"],
+      "status": "open"
+    },
+    {
+      "gap_id": "gap-002",
+      "statement": "The metadata does not establish that the candidate contains the exact electrophysiology modality required by the investigation.",
+      "severity": "material",
+      "required_evidence": ["asset-level modality fields", "documentation review"],
+      "status": "open"
+    },
+    {
+      "gap_id": "gap-003",
+      "statement": "The paper candidates are not yet linked to specific datasets or code artifacts.",
+      "severity": "material",
+      "required_evidence": ["DOI-to-dataset relation", "paper or repository metadata"],
+      "status": "open"
+    },
+    {
+      "gap_id": "gap-004",
+      "statement": "License, access, documentation readiness and version stability require manual review before acquisition or analysis.",
+      "severity": "material",
+      "required_evidence": ["official license metadata", "version metadata", "documentation"],
+      "status": "open"
+    }
+  ],
+  "decision": "validate",
+  "next_move_id": "move-v001-source-review",
+  "created_at": "2026-08-20T01:45:56Z",
+  "updated_at": "2026-08-20T01:46:07Z",
+  "warnings": [
+    "metadata_only: no scientific asset was downloaded",
+    "human_review_required: eligibility is heuristic",
+    "absence_of_evidence_is_not_evidence_of_absence"
+  ]
+}

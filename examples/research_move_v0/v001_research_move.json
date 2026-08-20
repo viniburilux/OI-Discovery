@@ -1,0 +1,27 @@
+{
+  "schema_version": "tracefoundry.research_move.v0",
+  "move_id": "move-v001-source-review",
+  "investigation_id": "V001-human-organoid-electrophysiology",
+  "title": "Revisar a compatibilidade dos candidatos com a pergunta científica",
+  "objective": "Reduzir a incerteza sobre sistema biológico, modalidade, acessibilidade, licença e relação paper-dataset antes de qualquer aquisição ou análise.",
+  "action_type": "metadata_review",
+  "action": "Inspecionar as páginas oficiais e os metadados de fonte dos candidatos DANDI, OpenAlex e Zenodo, registrar relações confirmadas e não confirmadas e atualizar o estado da investigação.",
+  "rationale": "A seleção atual identifica candidatos plausíveis, mas os adapters não provam sozinhos que cada registro corresponde a eletrofisiologia de organoides humanos nem que um paper está ligado a um dataset específico.",
+  "evidence_ids": [
+    "ev-dandi-001603",
+    "ev-dandi-001603-asset",
+    "ev-openalex-cyborg-organoids",
+    "ev-zenodo-query-shape"
+  ],
+  "gap_ids": ["gap-001", "gap-002", "gap-003", "gap-004"],
+  "expected_observation": "Uma matriz revisável que separa relações confirmadas, prováveis e não demonstradas por fonte pública.",
+  "stop_criteria": [
+    "Não declarar suitability científica apenas por título, path ou extensão.",
+    "Não baixar assets nem executar notebooks durante esta etapa.",
+    "Marcar como insuficiente qualquer relação sem evidência de fonte.",
+    "Parar e registrar bloqueio quando licença, acesso ou versão não puderem ser confirmados."
+  ],
+  "status": "proposed",
+  "created_at": "2026-08-20T01:46:07Z",
+  "provenance_note": "Derived from the public metadata-only V001 execution; no private laboratory state is included."
+}

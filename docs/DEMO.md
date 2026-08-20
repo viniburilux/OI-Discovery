@@ -14,6 +14,7 @@ Imagine uma equipe que precisa decidir se vale investigar um dataset de eletrofi
 4. A seleção explica por que cada item entrou ou saiu.
 5. O manifest registra o que foi observado, quando foi observado e o que continua desconhecido.
 6. Um revisor decide se vale avançar para aquisição controlada.
+7. A camada de investigação registra claims, lacunas e a próxima ação justificável.
 
 ## Executar localmente
 
@@ -40,9 +41,20 @@ Abra `demo_manifest.json` e observe especialmente:
 - os warnings e as limitações;
 - `download_performed: false`.
 
+## Da descoberta ao Research Move
+
+Depois da consulta, execute a fixture pública de investigação:
+
+```bash
+PYTHONPATH=src python scripts/show_research_move.py
+PYTHONPATH=src python tests/run_research_move_tests.py
+```
+
+A saída mostra uma pergunta, quatro referências metadata-only, claims com status epistemológico, lacunas abertas e um Research Move com objetivo, ação, justificativa e critérios de parada. A fixture foi construída com URLs públicas do V001 e não contém dados brutos, memória privada ou estado experimental inédito.
+
 ## O que a demo prova
 
-A demo prova que o caminho de **query → adapter → records → seleção → manifest** é executável e reproduzível sob a política metadata-only. Ela não prova que o dataset é adequado à hipótese científica, que os dados possuem qualidade suficiente ou que o resultado gera ganho de produtividade para uma equipe.
+A demo prova que o caminho de **query → adapter → records → seleção → manifest → investigation state → Research Move** é representável e reproduzível sob a política metadata-only. Ela não prova que o dataset é adequado à hipótese científica, que os dados possuem qualidade suficiente ou que o resultado gera ganho de produtividade para uma equipe.
 
 ## O que uma equipe faria depois
 

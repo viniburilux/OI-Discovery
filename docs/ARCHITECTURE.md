@@ -14,8 +14,10 @@ flowchart TB
     SEL --> EVAL[Evidence evaluation]
     EVAL --> MAN[Versioned manifest]
     MAN --> REG[Append-only registry]
+    MAN --> STATE[Investigation State]
+    STATE --> MOVE[Research Move]
+    MOVE --> HUMAN[Human review]
     MAN --> LINK[Reviewable private-memory link]
-    MAN --> HUMAN[Human review]
     HUMAN --> ACQ[Controlled acquisition]
     ACQ --> LAB[Private analysis / experiment]
 ```
@@ -63,6 +65,12 @@ TraceFoundry distingue estados que sistemas de busca frequentemente colapsam:
 
 A ausência de candidatos não deve ser interpretada como ausência do fenômeno no mundo. É uma observação sobre uma query, uma fonte, uma versão e uma política de seleção em determinado momento.
 
+## Investigation State and Research Move
+
+The public investigation layer is intentionally small. `InvestigationState` captures a versioned question, public evidence references, claims, gaps, warnings and a decision snapshot. `ResearchMove` captures a proposed next action, its rationale, expected observation and stop criteria. These objects help a reviewer decide what to do next; they do not perform scientific interpretation or autonomous experimentation.
+
+The public contracts can be used with public metadata fixtures and manifests. Private systems may enrich them with sensitive questions, proprietary corpora, unpublished claims, memory and domain-specific decisions without changing the public schema.
+
 ## Fronteira público/privado
 
 ```mermaid
@@ -76,7 +84,7 @@ flowchart LR
     SAFE --> PUB
 ```
 
-O público contém contratos, adapters, schemas, seleção, manifests, testes e fixtures genéricas. O privado pode conter dados derivados, claims sensíveis, estado de investigação, decisões, scripts específicos de domínio e resultados experimentais. A ponte para LuxMemory é revisável e não grava automaticamente em banco.
+O público contém contratos, adapters, schemas, seleção, manifests, testes, fixtures genéricas e Research Moves baseados em metadata pública. O privado pode conter dados derivados, claims sensíveis, perguntas proprietárias, decisões, scripts específicos de domínio e resultados experimentais. A ponte para LuxMemory é revisável e não grava automaticamente em banco.
 
 ## Segurança operacional
 
@@ -84,4 +92,4 @@ O core público não executa notebooks, não baixa datasets científicos e não 
 
 ## Evolução planejada
 
-A próxima camada provável é um objeto privado de `InvestigationState`, ligado a `ResearchMove`: uma decisão de próxima ação baseada em evidência, lacunas, conflitos e critérios de parada. Isso não deve entrar no core público antes de um Value Test demonstrar que reduz tempo ou ambiguidade contra busca manual, API bruta e RAG convencional.
+A próxima camada de validação é medir se o estado e os Research Moves reduzem tempo, ambiguidade e retrabalho contra busca manual, API bruta e RAG convencional. Entity resolution, deduplicação cross-source, claims/evidence links mais ricos e readiness gates devem ser adicionados somente quando um caso público demonstrar necessidade concreta.

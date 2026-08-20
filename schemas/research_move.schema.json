@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/viniburilux/TraceFoundry/blob/main/schemas/research_move.schema.json",
+  "title": "TraceFoundry Research Move",
+  "description": "A proposed or completed next action that can reduce an explicit evidence gap.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "move_id",
+    "investigation_id",
+    "title",
+    "objective",
+    "action_type",
+    "action",
+    "rationale",
+    "evidence_ids",
+    "gap_ids",
+    "stop_criteria",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "move_id": {"type": "string", "minLength": 1},
+    "investigation_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "action_type": {"type": "string", "minLength": 1},
+    "action": {"type": "string", "minLength": 1},
+    "rationale": {"type": "string", "minLength": 1},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "gap_ids": {"type": "array", "items": {"type": "string"}},
+    "expected_observation": {"type": ["string", "null"]},
+    "stop_criteria": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["proposed", "accepted", "completed", "rejected", "blocked"]},
+    "created_at": {"type": ["string", "null"]},
+    "provenance_note": {"type": ["string", "null"]}
+  }
+}

@@ -16,7 +16,7 @@ A busca convencional otimiza descoberta de links. O RAG convencional otimiza ger
 
 ## O que o produto faz
 
-TraceFoundry coleta metadata de fontes públicas, normaliza identificadores e campos, aplica restrições explícitas, seleciona candidatos de forma determinística e registra a proveniência de cada resultado. Quando não há evidência suficiente, o sistema pode dizer isso. Quando uma fonte está bloqueada por rate limit ou credencial, isso aparece como bloqueio de dependência, não como ausência de evidência.
+TraceFoundry coleta metadata de fontes públicas, normaliza identificadores e campos, aplica restrições explícitas, seleciona candidatos de forma determinística e registra a proveniência de cada resultado. Sobre esse manifest, a camada pública de investigação pode representar claims, lacunas e um Research Move revisável: uma próxima ação com justificativa e critérios de parada. Quando não há evidência suficiente, o sistema pode dizer isso. Quando uma fonte está bloqueada por rate limit ou credencial, isso aparece como bloqueio de dependência, não como ausência de evidência.
 
 ## O que o produto não promete
 
@@ -41,7 +41,7 @@ O diferencial não é “usar IA para buscar”. O diferencial é combinar quatr
 3. **Epistemic:** candidato operacional, ausência, insuficiência e bloqueio não são tratados como a mesma coisa.
 4. **Reproducible:** query, timestamp, metadata observada e decisão são empacotados em manifest versionado.
 
-A camada futura de inteligência poderá usar esses manifests para manter estado de investigação, relacionar claims a evidências e recomendar Research Moves. Essa evolução ainda deve ser validada por experimentos de utilidade; não é uma capacidade declarada do core atual.
+A camada de investigação pública já fornece contratos mínimos para manter estado, relacionar claims a evidências e propor Research Moves. Ela é uma capacidade de representação e revisão, não um agente autônomo nem uma conclusão científica. Entity resolution, deduplicação cross-source, planejamento experimental e eficácia comercial continuam sendo gates de validação.
 
 ## Por que agora
 
@@ -55,6 +55,6 @@ TraceFoundry oferece uma fundação pequena, aberta e extensível para colocar o
 
 ## Maturidade
 
-O core público está em estágio de **infraestrutura funcional e demonstrável**. Os adapters, contratos, manifests, seleção e testes metadata-only existem. A eficácia comercial — tempo economizado, qualidade superior da decisão ou disposição a pagar — ainda é uma hipótese a ser medida com Value Tests controlados.
+O core público está em estágio de **infraestrutura funcional e demonstrável**. Os adapters, contratos, manifests, seleção, testes metadata-only e os contratos públicos de investigação existem. A eficácia comercial — tempo economizado, qualidade superior da decisão ou disposição a pagar — ainda é uma hipótese a ser medida com Value Tests controlados.
 
 Essa distinção é deliberada. TraceFoundry pretende ser confiável antes de ser grandioso.

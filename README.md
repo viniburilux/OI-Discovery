@@ -23,6 +23,16 @@ A search result is not yet a candidate. A candidate is not yet a validated asset
 
 > **TraceFoundry does not replace expert judgment. It makes expert judgment faster to start, easier to audit and harder to accidentally overstate.**
 
+## From discovery to the next defensible move
+
+TraceFoundry now includes a small public investigation layer on top of discovery. `InvestigationState` records evidence, claims, gaps and a decision snapshot. `ResearchMove` records a proposed next action, its rationale, expected observation and stop criteria. The layer remains metadata-only and deliberately distinguishes observed facts from inferences, hypotheses, insufficiency, blockage and contradiction.
+
+```bash
+PYTHONPATH=src python scripts/show_research_move.py
+```
+
+The V001 fixture is public, reproducible and built only from public source metadata. It contains no raw scientific data, private memory or unpublished laboratory state. Read the [Investigation documentation](docs/INVESTIGATION.md) for the contract and public/private boundary.
+
 ## What TraceFoundry delivers
 
 | Capability | Practical outcome |
@@ -122,7 +132,7 @@ PYTHONPATH=src python tests/run_live_metadata_tests.py
 PYTHONPATH=src python tests/run_cross_domain_live_tests.py
 ```
 
-The repository includes a reproducible [test matrix](docs/TEST_MATRIX.md), [cross-domain results](docs/CROSS_DOMAIN_TESTS.md), [Benchmark v0 report](docs/BENCHMARK_V0_RESULTS.md), [architecture notes](docs/ARCHITECTURE.md) and [commercial positioning](docs/POSITIONING.md). The benchmark is a proof of infrastructure, not a claim that TraceFoundry has already demonstrated productivity gains against manual search or conventional RAG.
+The repository includes a reproducible [test matrix](docs/TEST_MATRIX.md), [cross-domain results](docs/CROSS_DOMAIN_TESTS.md), [Benchmark v0 report](docs/BENCHMARK_V0_RESULTS.md), [architecture notes](docs/ARCHITECTURE.md), [investigation contracts](docs/INVESTIGATION.md) and [commercial positioning](docs/POSITIONING.md). The benchmark is a proof of infrastructure, not a claim that TraceFoundry has already demonstrated productivity gains against manual search or conventional RAG.
 
 ## The core contract
 
@@ -137,7 +147,7 @@ The Python package and CLI retain the stable `oi_discovery` namespace so existin
 
 ## Public core, private laboratory
 
-TraceFoundry is the reusable public infrastructure layer. Domain-specific research scripts, derived scientific data, investigation state, private decisions and memory remain outside this repository. That boundary is deliberate: the public product demonstrates reproducibility and provenance without exposing a private research laboratory or pretending that metadata is scientific validation.
+TraceFoundry is the reusable public infrastructure layer. Generic investigation contracts, public metadata fixtures and reviewable Research Moves are included here. Domain-specific research scripts, derived scientific data, private decisions and memory remain outside this repository. That boundary is deliberate: the public product demonstrates reproducibility and provenance without exposing a private research laboratory or pretending that metadata is scientific validation.
 
 ## Roadmap
 
